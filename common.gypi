@@ -154,7 +154,7 @@
             'ldflags': [ '-mx32' ],
           }],
           [ 'OS=="linux"', {
-            'cflags': [ '-ansi' ],
+            #'cflags': [ '-ansi' ],#mytest/main.c use c++ style comment, see https://stackoverflow.com/questions/5664016/error-expected-expression-before-token
           }],
           [ 'OS=="solaris"', {
             'cflags': [ '-pthreads' ],

@@ -593,5 +593,34 @@
         },
       },
     },
+	
+	{
+      'target_name': 'my-test',
+      'type': 'executable',
+      'dependencies': [ 'libuv' ],
+      'sources': [
+        'mytest/main.c',
+      ],
+      'conditions': [
+        [ 'OS=="win"', {
+          'libraries': [ '-lws2_32' ]
+        }, { # POSIX
+          'defines': [ '_GNU_SOURCE' ],
+        }],
+        ['uv_library=="shared_library"', {
+          'defines': [ 'USING_UV_SHARED=1' ],
+          'conditions': [
+            [ 'OS == "os390"', {
+              'cflags': [ '-Wc,DLL' ],
+            }],
+          ],
+        }],
+      ],
+      'msvs-settings': {
+        'VCLinkerTool': {
+          'SubSystem': 1, # /subsystem:console
+        },
+      },
+    },
   ]
 }
